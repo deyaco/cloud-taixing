@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: taixing-gateway
+  cloud:
+    nacos:
+      #      username: nacos
+      #      password: nacos
+      config:
+        #        namespace:
+        server-addr: 127.0.0.1:8848
+        file-extension: yml
+
+logging:
+  path: ${user.home}/logs/${spring.profiles.active}

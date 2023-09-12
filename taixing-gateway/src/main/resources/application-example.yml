@@ -1,0 +1,233 @@
+server:
+  port: ${taixing.port:8250}
+  servlet:
+    context-path: /gateway
+spring:
+  boot:
+    admin:
+      client:
+        enabled: true
+        instance:
+          prefer-ip: true
+  cloud:
+    nacos:
+      discovery:
+        namespace: cc306416-c0a5-4261-bb93-afdad14c342b
+        server-addr: 127.0.0.1:8848
+        metadata:
+          management:
+            context-path: ${server.servlet.context-path}/actuator
+    gateway:
+      discovery:
+        locator:
+#         开启通过服务中心动态更新配置的功能
+          enabled: true
+
+
+  data:
+    web:
+      pageable:
+        default-page-size: 10
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:postgresql://127.0.0.1:5432/biz_mes?ApplicationName=biz-mes-apiserver&connectTimeout=60&socketTimeout=60
+    hikari:
+      jdbc-url: ${spring.datasource.url}
+      driver-class-name: org.postgresql.Driver
+      minimum-idle: 1
+      maximum-pool-size: 8
+      username: biz_mes
+      password: biz_mes
+      login-timeout: 10
+      validation-timeout: 3000
+      pool-name: MesHikariPool
+  flyway:
+    enabled: true
+    locations:
+      - classpath:db/common
+      - classpath:db/dev
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+      force-request: true
+      force-response: true
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+      indent-output: false
+    deserialization:
+      adjust-dates-to-context-time-zone: true
+      accept-float-as-int: false
+      accept-single-value-as-array: true
+      unwrap-single-value-arrays: true
+    default-property-inclusion: NON_NULL
+  main:
+    allow-bean-definition-overriding: true
+  rabbitmq:
+    host: 127.0.0.1
+    username: guest
+    password: guest
+    virtual-host: /
+    listener:
+      simple:
+        acknowledge-mode: manual
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    timeout: 3000
+    lettuce:
+      pool:
+        min-idle: 1
+        max-idle: 4
+        max-active: 8
+  servlet:
+    multipart:
+      max-file-size: 128MB
+      max-request-size: 256MB
+
+mybatis-plus:
+  mapper-locations: classpath*:**/*Mapper.xml
+  type-handlers-package: com.hesaitech.framework.core.mybatis.type.postgresql
+  configuration:
+    cache-enabled: false
+    use-generated-keys: false
+    default-executor-type: REUSE
+    auto-mapping-unknown-column-behavior: WARNING
+    map-underscore-to-camel-case: true
+    default-statement-timeout: 30
+    global-config:
+      banner: false
+      db-config:
+        id-type: INPUT
+        logic-delete-field: deleted
+        logic-delete-value: true
+        logic-not-delete-value: false
+
+security:
+  oauth2:
+    resource:
+      jwt:
+        key-value: |
+          -----BEGIN PUBLIC KEY-----
+          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxuiTeJEYAv21Bfc7Em0j
+          mY5wu01vHcqSbTge1/5p6cILbHjXaIkCk/Z0gKd9eAf7EfiPP6QzN0oiHXJ5GS1Q
+          MFgvp076tmkcs/Mo1p4xRVRnfnjTR1SlQ7oXUt3Hx7Sp1Pfn4Ulsv5KE5MeVwl3J
+          sW+NRtB+kzwacImoMWzYtpKWwVUMEVkxlLTYAuVqhpzVm95sZIa7o8vcXWOowK2m
+          /Uw9Ro4IpDhj9elnY9/Vj4rC9EeSukrm+4BAh0ZJ8FaJnrERcPh5GNiZdPkjrwr9
+          hl1dAaSgWwfkwVFDgSuH4Dbb9huKsiKivedMUvG9dbsipm6xVflvgAEWqq7rbv57
+          NQIDAQAB
+          -----END PUBLIC KEY-----
+
+management:
+  health:
+    mail:
+      enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: "info,health"
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 15000
+ribbon:
+  NFLoadBalancerPingInterval: 5
+
+springfox:
+  documentation:
+    swagger-ui:
+      enabled: true
+
+logging:
+#  level:
+#    '[root]': info
+#    '[com.alibaba]': warn
+#    '[com.baomidou.mybatisplus.core.MybatisConfiguration]': info
+#    '[com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean]': info
+#    '[com.hesaitech]': debug
+#    '[com.hesaitech.framework.core.external.adapter.service.JwtKeyService]': ${logging.level.root}
+#    '[com.hesaitech.framework.core.mybatis.plugins.inner]': info
+#    '[com.netflix.discovery]': info
+#    '[com.netflix.hystrix]': info
+#    '[com.netflix.loadbalancer]': info
+#    '[com.zaxxer.hikari]': warn
+#    '[de.codecentric.boot.admin]': info
+#    '[io.lettuce]': info
+#    '[io.netty]': info
+#    '[io.undertow]': info
+#    '[org.apache.http]': 'off'
+#    '[org.apache.ibatis.session.AutoMappingUnknownColumnBehavior]': warn
+#    '[org.apache.skywalking]': info
+#    '[org.flywaydb]': info
+#    '[org.hibernate.validator]': info
+#    '[org.mybatis.spring]': info
+#    '[org.redisson]': info
+#    '[org.springframework]': info
+#    '[org.springframework.boot]': info
+#    '[org.springframework.security]': info
+#    '[org.springframework.web.filter.CommonsRequestLoggingFilter]': info
+#    '[org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod]': debug
+#    '[org.xnio]': info
+#    '[springfox]': info
+#    '[springfox.documentation.swagger.readers.operation]': error
+
+#hesai:
+#  mes:
+#    delivery-role-name : ROLE_MES_distributer
+#  audit:
+#    enabled: true
+#    enabled-get-method: false
+#  cache:
+#    enabled: true
+#    config:
+#      jtiActive:
+#        maxIdleTime: 1800000
+#      permissionsUser:
+#        ttl: 1810000
+#      cache_dynamicFormFieldLnkPoList:
+#        maxSize: 2000
+#        ttl: 300000
+#      cache_processPo:
+#        maxSize: 2000
+#        ttl: 300000
+#      cache_dynamicFormPo:
+#        maxSize: 2000
+#        ttl: 300000
+#      cache_dynamicFieldPo:
+#        maxSize: 2000
+#        ttl: 300000
+#  minio:
+#    enabled: true
+#    endpoint-url: http://127.0.0.1:9000
+#    access-key: AKIAIOSFODNN7EXAMPLE
+#    secret-key: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+#    bucket-name: bucket01
+#  web:
+#    white-uris:
+#      - /
+#      - /internal/**
+#      - /actuator/**
+#      - /webjars/**
+#      - /swagger-ui/**
+#      - /swagger-resources/**
+#      - /v2/api-docs
+#      - /v3/api-docs
+#      - /error
+#  permission:
+#    enable: false
+#  client:
+#    amqp:
+#      mqRetryCnt: 3
+#  cat:
+#    address: 172.16.10.27
+#    port: 2280
+#    httpPort: 8891
+#    enable: true

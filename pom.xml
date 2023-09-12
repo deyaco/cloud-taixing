@@ -2,13 +2,6 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.1.18.RELEASE</version>
-    <relativePath />
-  </parent>
-
 
   <groupId>com.deyaco</groupId>
   <artifactId>cloud-taixing</artifactId>
@@ -20,10 +13,10 @@
 
   <modules>
     <module>taixing-gateway</module>
-    <module>taixing-core</module>
+    <module>taixing-framework</module>
     <module>taixing-uaa</module>
-    <module>taixing-core/commons</module>
-    <module>taixing-user</module>
+    <module>taixing-framework</module>
+    <module>taixing-web</module>
   </modules>
 
 
@@ -62,7 +55,7 @@
       <dependency>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-dependencies</artifactId>
-        <version>${spring-cloud.version}</version>
+        <version>Greenwich.SR6</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -97,12 +90,7 @@
         <version>${swagger.core.version}</version>
       </dependency>
 
-      <!-- 验证码 -->
-      <dependency>
-        <groupId>pro.fessional</groupId>
-        <artifactId>kaptcha</artifactId>
-        <version>${kaptcha.version}</version>
-      </dependency>
+
 
 
       <!-- io常用工具类 -->
@@ -159,58 +147,58 @@
 <!--      </dependency>-->
     </dependencies>
   </dependencyManagement>
-<!--  <build>-->
-<!--    <plugins>-->
-<!--      <plugin>-->
-<!--        <groupId>org.apache.maven.plugins</groupId>-->
-<!--        <artifactId>maven-compiler-plugin</artifactId>-->
-<!--        <configuration>-->
-<!--          <source>${java.version}</source>-->
-<!--          <target>${java.version}</target>-->
-<!--          <encoding>${project.build.sourceEncoding}</encoding>-->
-<!--        </configuration>-->
-<!--      </plugin>-->
-<!--    </plugins>-->
-<!--    <pluginManagement>-->
-<!--      <plugins>-->
-<!--        <plugin>-->
-<!--          <groupId>org.springframework.boot</groupId>-->
-<!--          <artifactId>spring-boot-maven-plugin</artifactId>-->
-<!--          <version>${spring-boot.version}</version>-->
-<!--          <executions>-->
-<!--            <execution>-->
-<!--              <goals>-->
-<!--                <goal>repackage</goal>-->
-<!--              </goals>-->
-<!--            </execution>-->
-<!--          </executions>-->
-<!--        </plugin>-->
-<!--      </plugins>-->
-<!--    </pluginManagement>-->
-<!--  </build>-->
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+          <encoding>${project.build.sourceEncoding}</encoding>
+        </configuration>
+      </plugin>
+    </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+          <version>${spring-boot.version}</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>repackage</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
 
-<!--  <repositories>-->
-<!--    <repository>-->
-<!--      <id>public</id>-->
-<!--      <name>aliyun nexus</name>-->
-<!--      <url>https://maven.aliyun.com/repository/public</url>-->
-<!--      <releases>-->
-<!--        <enabled>true</enabled>-->
-<!--      </releases>-->
-<!--    </repository>-->
-<!--  </repositories>-->
+  <repositories>
+    <repository>
+      <id>public</id>
+      <name>aliyun nexus</name>
+      <url>https://maven.aliyun.com/repository/public</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </repository>
+  </repositories>
 
-<!--  <pluginRepositories>-->
-<!--    <pluginRepository>-->
-<!--      <id>public</id>-->
-<!--      <name>aliyun nexus</name>-->
-<!--      <url>https://maven.aliyun.com/repository/public</url>-->
-<!--      <releases>-->
-<!--        <enabled>true</enabled>-->
-<!--      </releases>-->
-<!--      <snapshots>-->
-<!--        <enabled>false</enabled>-->
-<!--      </snapshots>-->
-<!--    </pluginRepository>-->
-<!--  </pluginRepositories>-->
+  <pluginRepositories>
+    <pluginRepository>
+      <id>public</id>
+      <name>aliyun nexus</name>
+      <url>https://maven.aliyun.com/repository/public</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
 </project>

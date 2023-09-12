@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <option name="BUILD_PROCESS_HEAP_SIZE" value="2048" />
+    <excludeFromCompile>
+      <directory url="file://$PROJECT_DIR$/taixing-gateway/src/main/resources/archetype-resources" includeSubdirectories="true" />
+    </excludeFromCompile>
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="taixing-gateway" />
+        <module name="taixing-user" />
+        <module name="taixing-auth2" />
+        <module name="taixing-uaa" />
+        <module name="taixing-framework" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="com.deyaco.core" target="1.8" />
+      <module name="core" target="1.8" />
+      <module name="taixing-auth2" target="1.8" />
+      <module name="taixing-common" target="1.8" />
+      <module name="taixing-dependenies" target="1.5" />
+      <module name="taixing-nacos" target="1.5" />
+      <module name="untitled" target="1.8" />
+      <module name="user-api" target="1.8" />
+      <module name="user-apiserver" target="1.8" />
+      <module name="user-bizservice" target="1.8" />
+      <module name="user-infrastructure" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="com.deyaco.core" options="-parameters" />
+      <module name="core" options="-parameters" />
+      <module name="taixing-framework" options="" />
+      <module name="taixing-gateway" options="" />
+      <module name="taixing-uaa" options="" />
+      <module name="taixing-user" options="" />
+      <module name="taixing-web" options="" />
+      <module name="untitled" options="-parameters" />
+      <module name="user-api" options="-parameters" />
+      <module name="user-apiserver" options="-parameters" />
+      <module name="user-bizservice" options="-parameters" />
+      <module name="user-infrastructure" options="-parameters" />
+    </option>
+  </component>
+</project>
