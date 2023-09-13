@@ -2,7 +2,7 @@ package com.deyaco.gateway.config;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.nacos.api.config.annotation.NacosConfigListener;
-import com.alibaba.nacos.shaded.com.google.common.collect.Lists;
+import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
